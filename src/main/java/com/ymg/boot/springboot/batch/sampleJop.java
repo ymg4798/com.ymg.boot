@@ -7,12 +7,12 @@ import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.repeat.RepeatStatus;
-import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 @Slf4j
 @RequiredArgsConstructor
-@Configurable // 스프링 batch의 job은 Configuratble 을 등록해야한다.
+@Configuration // 스프링 batch의 job은 Configuratble 을 등록해야한다.
 public class sampleJop {
     private final JobBuilderFactory jobBuilderFactory;
     private final StepBuilderFactory stepBuilderFactory;
@@ -23,7 +23,7 @@ public class sampleJop {
                 .start(simpleStep1())
                 .build();
     }
-
+    @Bean
     public Step simpleStep1(){
         return stepBuilderFactory.get("simpleStep1")// simpleStep batch step설정
                 .tasklet((contribution, chunkContext) -> {// step에서 단일 수행 커스텀 기능
