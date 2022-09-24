@@ -31,6 +31,7 @@ dependencies {
     implementation('org.springframework.boot:spring-boot-starter-mustache')
     implementation('org.springframework.boot:spring-boot-devtools')
     implementation('org.springframework.boot:spring-boot-starter-batch')
+    implementation('mysql:mysql-connector-java:8.0.18')
     annotationProcessor('org.projectlombok:lombok')
     testAnnotationProcessor('org.projectlombok:lombok')
     testImplementation('org.projectlombok:lombok')
