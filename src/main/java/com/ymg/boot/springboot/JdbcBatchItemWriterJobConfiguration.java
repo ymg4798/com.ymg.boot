@@ -30,7 +30,9 @@ public class JdbcBatchItemWriterJobConfiguration {
 
     @Bean
     public Job jdbcBatchItemWriterJob(){
-
+        return jobBuilderFactory.get("jdbcBatchItemWriterJob")
+                .start(jdbcBatchItemWriterStep())
+                .build();
     }
 
     @Bean
@@ -62,13 +64,13 @@ public class JdbcBatchItemWriterJobConfiguration {
                 .sql("insert into pay2(amount, tx_name, tx_data_time) values (:amount, :txName, :txDataTime)")
                 .build();
          */
-        /*
+
         return new JdbcBatchItemWriterBuilder<Pay>()
                 .dataSource(dataSource)
                 .sql("insert into pay2(amount, tx_name, tx_date_time) values (:amount, :txName, :txDateTime)")
                 .beanMapped()
                 .build();
-        */
+
     }
 
 }
