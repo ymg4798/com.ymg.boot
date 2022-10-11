@@ -2,11 +2,10 @@ package com.ymg.boot.springboot.domain.posts;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 @ToString
 @Getter
@@ -21,6 +20,21 @@ public class Teacher {
     private Long id;
 
     private String name;
+    private String subject;
+
+    @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL)//상위 엔터티에서 하위 엔터티로 모든 작업을 전파
+    private List<Student> students = new ArrayList<>();
+
+    @Builder
+    public Teacher(String name, String subject) {
+        this.name = name;
+        this.subject = subject;
+    }
+
+    public void addStudent(Student student){
+        students.add(student);
+        student.setTeacher(this);
+    }
 }
 
 
